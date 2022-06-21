@@ -3,7 +3,7 @@ import "./Sidebar.css"
 
 export default function Sidebar() {
   return (
-    <section className="sidebar">
+    <section className="sidebar" id="sidebar">
       <p>Sidebar</p>
     </section>
   )

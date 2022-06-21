@@ -5,4 +5,19 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  margin-top: 10pt;
+  
+
 }
+
+.home h2{
+  margin-left: 150pt;
+}
+
+.searchClass{
+  margin-left: 150pt;
+  display: flex;
+  flex-direction: row;
+}
+
+

@@ -1,0 +1,23 @@
+.navbar{
+    background-color: #2c4047;
+    color:white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10pt;
+    padding-left: 10pt;
+    padding-right: 15pt;
+    padding-bottom: 10pt;
+    margin-left: 75pt;
+
+}
+
+.navbarItems{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+    padding-bottom:0pt;
+}
+

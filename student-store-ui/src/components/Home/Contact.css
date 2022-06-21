@@ -1,0 +1,12 @@
+
+.contactSection{
+    border: solid .5pt black;
+    margin-left: 150pt;
+    margin-right: 75pt;
+    background-color: #2c4047;
+    padding:5pt;
+    color:white;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
