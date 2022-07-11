@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 import axios from "axios";
 import { useParams } from "react-router-dom";
-export default function ProductsCard({store, searchValue, handleAddItemToCart, description}) {
+export default function ProductsCard({store, searchValue, handleAddItemToCart,handleRemoveItemToCart, description}) {
 const [amount, setAmount] = React.useState(0);
 let productId = useParams().productId;
   return (
@@ -17,12 +17,17 @@ let productId = useParams().productId;
         <div className="buttons">
           <button className="add" onClick={() => {
             setAmount(amount + 1);
-            handleAddItemToCart(productId)
+            handleAddItemToCart(store.id);
+            console.log(store.id)
+
           }
             }>
             <i className="material-icons">add</i>
           </button>
-          <button className="remove" onClick={() => setAmount(amount - 1)}>
+          <button className="remove" onClick={() => {
+            setAmount(amount - 1);
+            handleRemoveItemToCart(store.id);
+            }}>
             <i className="material-icons">remove</i>
           </button>
           <div>

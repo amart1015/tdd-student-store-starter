@@ -8,7 +8,7 @@ import HeroBanner from "../HeroBanner/HeroBanner"
 import About from "./About"
 import Contact from "./Contact"
 
-export default function Home({cart, store,setStore, searchValue, setSearchValue,onSearchChange, products, setProducts, filter, setFilter,handleAddItemToCart}) {
+export default function Home({cart, store,setStore, searchValue, setSearchValue,onSearchChange, products, setProducts, filter, setFilter,handleAddItemToCart, handleRemoveItemToCart}) {
 
   const productList = searchValue === "" ? store : store.filter((product) => product.name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1)
 
@@ -16,7 +16,7 @@ export default function Home({cart, store,setStore, searchValue, setSearchValue,
     <div className="home">
       <SearchBar onSearchChange={onSearchChange} searchValue={searchValue} store={store} setProducts={setProducts}/>
       <h2>Best Selling Products:</h2>
-      <ProductsGrid cart={cart} store={productList} searchValue={searchValue} handleAddItemToCart={handleAddItemToCart}/>
+      <ProductsGrid cart={cart} store={productList} searchValue={searchValue} handleAddItemToCart={handleAddItemToCart} handleRemoveItemToCart={handleRemoveItemToCart}/>
       <About/>
       <Contact/>
       <Footer/>

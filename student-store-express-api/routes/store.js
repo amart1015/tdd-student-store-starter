@@ -28,13 +28,11 @@ router.get("/", async (req, res, next) => {
 
 
 
-router.post("/", async (req, res, next) => {
-    try{
-        const purchase = await Store.createPurchase(req.body.user, req.body.shoppingCart);
-        res.status(201).json({ purchase });
-    } catch(err) {
-        next(err);
-    }
-}) 
+router.post('/add', async (req, res) => {
+    let user = req.body.user
+    let shoppingCart = req.body.shoppingCart
+
+    await Store.makePurchase(user, shoppingCart)
+})
 
 module.exports = router;

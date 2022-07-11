@@ -19,7 +19,7 @@ const [input, setInput] = React.useState("")
 const [searchValue, setSearchValue] = React.useState("")
 const [products, setProducts] = React.useState("")
 const [filter, setFilter] = React.useState("All Categories")
-const [shoppingCart, setShoppingCart] = useState([])
+const [shoppingCart, setShoppingCart] = React.useState([])
 const [cart, setCart] = useState({})
 
 
@@ -28,7 +28,6 @@ useEffect(() => {
     try{
       const res = await axios.get('http://localhost:3001/store');
       setStore(res.data.products);
-      console.log(store);
       
     } catch(error){
       console.log("This is an error")
@@ -49,26 +48,57 @@ function onFilterClick(evt) {
   //evt.target.classList.add("active");
 }
 
-const handleAddItemToCart = (productId) => {
-  let notFound = true;
-  shoppingCart.forEach((e) => {
-      if (productId == e.itemId) {
-          e.quantity += 1;
-          notFound = false;
-      }
-  });
-  if (notFound) {
-      shoppingCart.push({ itemId: productId, quantity: 1 });
+function handleAddItemToCart(productId) {
+  const exist = shoppingCart.find(idx => idx.id === productId);
+  
+  if(exist) {
+    setShoppingCart(shoppingCart.map((idx) => idx.id === productId ? {...exist, quantity: exist.quantity + 1} : idx),
+    console.log(shoppingCart)
+    );
+    
+  } else {
+    setShoppingCart([...shoppingCart, { id: productId, quantity: 1 }]),
+    console.log(shoppingCart)
   }
-  setShoppingCart([...shoppingCart]);
-};
+}
+
+function handleRemoveItemToCart(productId) {
+  const exist = shoppingCart.find((idx) => idx.id == productId);
+  if(exist.quantity === 1) {
+    setShoppingCart(shoppingCart.filter((idx) => idx.id !== productId))
+  } else {
+    setShoppingCart(shoppingCart.map((idx) => idx.id === productId ? {...exist, quantity: exist.quantity - 1} : idx));
+  }
+}
+
+async function handleOnSubmitCheckoutForm(value) {
+  console.log('testing')
+  setReciept(shoppingCart, checkoutForm)
+ 
+  //we want to send the checkoutForm and the shopping cart 
+  try{
+    await axios.post('http://localhost:3002/store', {user : checkoutForm, shoppingCart : shoppingCart}).then(
+      //reset state variables
+      setShoppingCart([]),
+      setCheckoutForm({email: '', name: ''})
+    )
+    
+  } catch (error) {
+    console.log(error)
+  }
+
+
+  
+}
 
   return (
     <div className="app">
       <BrowserRouter>
         <main>
           <Navbar />
-          <Sidebar />
+          <Sidebar
+          shoppingCart={shoppingCart}
+          store={store} />
           <HeroBanner />
           <Routes>
           {/* YOUR CODE HERE! */}
@@ -88,6 +118,7 @@ const handleAddItemToCart = (productId) => {
           setFilter={setFilter}
           onFilterClick={onFilterClick}
           handleAddItemToCart={handleAddItemToCart}
+          handleRemoveItemToCart={handleRemoveItemToCart}
           cart={cart}/>}/>
           <Route path="/products/:productId" element={
           <ProductDetails store={store}

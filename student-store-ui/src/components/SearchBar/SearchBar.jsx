@@ -1,6 +1,6 @@
 import axios from "axios"
 import * as React from "react"
-import "./Searchbar.css"
+import "./SearchBar.css"
 
 export default function SearchBar({onSearchChange, searchValue, store, setProducts}) {
   // const handleCategories= async (category) => {
@@ -31,7 +31,7 @@ export default function SearchBar({onSearchChange, searchValue, store, setProduc
                 <div className="links">
                 </div></div>
                   <div className="row">
-                      <ul className="category-menu open">
+                      <ul className="category-menu" id="category-menu">
                         <li className="is-active"><button onClick={handleCategories("all")}>All Categories</button>
                         </li>
                         <li className=""><button onClick={handleCategories("clothing")}>Clothing</button></li>
