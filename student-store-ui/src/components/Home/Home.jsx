@@ -1,30 +1,25 @@
 import * as React from "react"
 import "./Home.css"
 import ProductsGrid from "../ProductsGrid/ProductsGrid"
+import Footer from "../Footer/Footer"
 import SearchBar from "../SearchBar/SearchBar"
 import { useEffect, useState } from "react";
 import HeroBanner from "../HeroBanner/HeroBanner"
 import About from "./About"
 import Contact from "./Contact"
 
-export default function Home({store}, props) {
-  const [currentProducts, setCurrentProducts] = React.useState([])
+export default function Home({cart, store,setStore, searchValue, setSearchValue,onSearchChange, products, setProducts, filter, setFilter,handleAddItemToCart}) {
 
-  let handleOnSearchChange = (event) => {
-    console.log(event.target.value)
-    // store.setInput(event.target.value)
-    // setCurrentProducts(store.filter(product => {
-    //   return(store.name.includes(store.input))
-    // }))
-  }
+  const productList = searchValue === "" ? store : store.filter((product) => product.name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1)
 
   return (
     <div className="home">
-      <SearchBar handleOnSearchChange={handleOnSearchChange}/>
+      <SearchBar onSearchChange={onSearchChange} searchValue={searchValue} store={store} setProducts={setProducts}/>
       <h2>Best Selling Products:</h2>
-      <ProductsGrid store={store}/>
+      <ProductsGrid cart={cart} store={productList} searchValue={searchValue} handleAddItemToCart={handleAddItemToCart}/>
       <About/>
       <Contact/>
+      <Footer/>
 
     </div>
   )

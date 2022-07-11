@@ -1,0 +1,23 @@
+.Footer{
+    border: solid .5pt black;
+    margin-left: 150pt;
+    margin-right: 75pt;
+    background-color: white;
+    padding:5pt;
+    color:black;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    margin-top: 50pt;
+    margin-bottom: 50pt;
+    padding-bottom: 25pt;
+}
+.links{
+    display: flex;
+    flex-direction: row;
+}
+
+.link-column{
+    margin-left: 30pt;
+    margin-right: 30pt;
+}

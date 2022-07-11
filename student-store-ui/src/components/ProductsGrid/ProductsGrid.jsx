@@ -1,15 +1,11 @@
 import * as React from "react"
 import "./ProductsGrid.css"
-
-export default function ProductsGrid({store}) {
+import ProductCard from "../ProductCard/ProductCard";
+export default function ProductsGrid({cart, store,searchValue, handleAddItemToCart}) {
   return (
     <div className="products-grid" id="products-grid">
       {store.map((store, idx) => (
-      <div className="product" id="product" key={store.id}>
-        <img src={store.image} alt="{props.description}" />
-        <p><b>{store.name}</b></p>
-        <p>${store.price.toFixed(2)}</p>
-      </div>
+      <ProductCard store={store} searchValue={searchValue} key={idx} handleAddItemToCart={handleAddItemToCart} productId={store.id}/>
       ))}
     </div>
   )

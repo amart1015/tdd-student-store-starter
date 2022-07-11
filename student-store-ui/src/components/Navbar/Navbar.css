@@ -21,3 +21,7 @@
     padding-bottom:0pt;
 }
 
+.navbar a {
+    color: #fff;
+    font-weight: 500;
+}
